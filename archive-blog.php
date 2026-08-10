@@ -157,9 +157,9 @@ get_header(); ?>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <input type="url" placeholder="Enter your website URL" class="px-6 py-4 rounded-xl bg-slate-800 border-none text-white focus:ring-2 focus:ring-blue-600 w-full sm:w-80">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold transition">
+                <a href="https://csicservices.com/get-audit/" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold transition inline-block text-center">
                     Run Audit
-                </button>
+                </a>
             </div>
             <p class="mt-6 text-[10px] text-slate-500 uppercase tracking-widest font-bold">Used by 200+ businesses in the US</p>
         </div>

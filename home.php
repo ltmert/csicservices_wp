@@ -129,9 +129,9 @@ get_header(); ?>
             <p class="text-blue-100 mb-8 text-sm opacity-90">Our technical audits uncover the hidden issues holding your organic growth back.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-3">
                 <input type="url" placeholder="Your Website URL" class="px-5 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 w-full sm:w-64">
-                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-black text-xs uppercase tracking-widest hover:bg-slate-100 transition">
+                <a href="https://csicservices.com/get-audit/" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-black text-xs uppercase tracking-widest hover:bg-slate-100 transition inline-block text-center">
                     Get Free Audit
-                </button>
+                </a>
             </div>
         </div>
     </aside>

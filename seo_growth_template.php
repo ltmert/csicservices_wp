@@ -48,7 +48,7 @@
 
     <nav class="bg-white border-b sticky top-0 z-50 py-3">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-xl font-black text-primary tracking-tighter uppercase">CSIC<span class="text-gray-700">SERVICES</span></div>
+            <a href="https://csicservices.com" class="text-xl font-black text-primary tracking-tighter uppercase text-decoration-none">CSIC<span class="text-gray-700">SERVICES</span></a>
             <a href="/get-audit" class="bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg btn-animate">Get Free Audit</a>
         </div>
     </nav>
