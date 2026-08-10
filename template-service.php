@@ -114,7 +114,7 @@ get_header(); ?>
                     
                     <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
                         <input type="url" placeholder="Your Website URL" class="px-6 py-4 rounded-xl bg-slate-800 border-none text-white focus:ring-2 focus:ring-blue-600 flex-1">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold transition">Get Audit</button>
+                        <a href="https://csicservices.com/get-audit/" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold transition inline-block text-center">Get Audit</a>
                     </div>
                 </div>
             </div>

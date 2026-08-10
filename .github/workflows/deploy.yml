@@ -18,25 +18,5 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }} # Remove this line if your key has no passphrase
           port: ${{ secrets.PORT }}
           script: |
-            cd name: Deploy to A2 Hosting
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: SSH into Server and Pull Latest Code
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }} # Remove this line if your key has no passphrase
-          port: ${{ secrets.PORT }}
-          script: |
             cd /home/csicser1/public_html/wp-content/themes/hello-elementor
             git pull origin main

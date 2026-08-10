@@ -115,14 +115,11 @@
             <div class="hidden md:flex space-x-8 font-medium">
                 <div class="csic-nav">
                     <ul>
-                        <li><a href="https://csicservices.com/#services">Services</a></li>
-                        <li><a href="https://csicservices.com/#tech">Tech Stack</a></li>
-                        <li><a href="https://csicservices.com/blog/">Blog</a></li>
-                        <li><a href="https://csicservices.com/#gap-analysis">Get Audit</a></li>
+                        <?php get_template_part( 'template-parts/csic-nav-links' ); ?>
                     </ul>
                 </div>
             </div>
-            <a href="https://csicservices.com/#gap-analysis" class="bg-primary text-white px-6 py-3 rounded-lg text-[10px] font-black uppercase tracking-widest text-center btn-animate text-decoration-none">
+            <a href="https://csicservices.com/get-audit/" class="bg-primary text-white px-6 py-3 rounded-lg text-[10px] font-black uppercase tracking-widest text-center btn-animate text-decoration-none">
                 Start Growing
             </a>
         </div>
@@ -140,8 +137,7 @@
                     We fix the technical barriers holding your business back. Whether you’re scaling on <strong>Shopify</strong>, <strong>WordPress</strong>, or integrating <strong>Salesforce</strong>, we build the fast, secure foundation your brand needs to dominate search results.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center">
-                    <a href="https://calendar.app.google/nFmbH3um2WoHUGmU6" 
-                       target="_blank" 
+                    <a href="https://csicservices.com/get-audit/"
                        class="inline-block bg-primary text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg btn-animate w-full sm:w-auto text-center">
                         Book Your Free Growth Strategy Call
                     </a>
@@ -183,7 +179,7 @@
                 </p>
             </div>
             <div class="z-10 flex-shrink-0">
-                <a href="/seo-growth" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition shadow-2xl">
+                <a href="https://csicservices.com/seo-growth-sprint/" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-500 transition shadow-2xl">
                     Explore the SEO Sprint →
                 </a>
             </div>
@@ -246,7 +242,7 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-4 text-white">Ready for Your Growth Audit?</h2>
             <p class="mb-10 text-blue-100 text-lg">We identify your conversion leaks and competitor gaps in a 5-minute video teardown.</p>
-            <a href="https://csicservices.com/#gap-analysis" class="inline-block bg-white text-primary font-bold px-10 py-5 rounded-xl text-xl shadow-2xl btn-animate text-decoration-none">
+            <a href="https://csicservices.com/get-audit/" class="inline-block bg-white text-primary font-bold px-10 py-5 rounded-xl text-xl shadow-2xl btn-animate text-decoration-none">
                 Get My Free Audit & Analysis →
             </a>
         </div>

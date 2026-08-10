@@ -145,13 +145,11 @@ Template Name: CSIC Master Service Template
             
             <nav class="hidden md:block csic-nav">
                 <ul>
-                    <li><a href="https://csicservices.com/#services">Services</a></li>
-                    <li><a href="https://csicservices.com/#tech">Tech Stack</a></li>
-                    <li><a href="https://csicservices.com/#gap-analysis">Get Audit</a></li>
+                    <?php get_template_part( 'template-parts/csic-nav-links' ); ?>
                 </ul>
             </nav>
 
-            <a href="https://csicservices.com/#gap-analysis" class="btn-main px-6 py-3 rounded-lg text-[10px] uppercase tracking-widest text-center">
+            <a href="https://csicservices.com/get-audit/" class="btn-main px-6 py-3 rounded-lg text-[10px] uppercase tracking-widest text-center">
                 Growth Audit
             </a>
         </div>
