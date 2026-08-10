@@ -145,9 +145,7 @@ Template Name: CSIC Master Service Template
             
             <nav class="hidden md:block csic-nav">
                 <ul>
-                    <li><a href="https://csicservices.com/#services">Services</a></li>
-                    <li><a href="https://csicservices.com/#tech">Tech Stack</a></li>
-                    <li><a href="https://csicservices.com/get-audit/">Get Audit</a></li>
+                    <?php get_template_part( 'template-parts/csic-nav-links' ); ?>
                 </ul>
             </nav>
 
