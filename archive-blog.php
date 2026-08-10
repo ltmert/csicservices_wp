@@ -5,10 +5,9 @@
  *
  * IMPORTANT: This is a PAGE template. On a Page, the global query only
  * contains the Page itself — NOT your blog posts. So we run our own
- * WP_Query below to pull actual posts, and a separate query to build
- * the category nav links. Do not swap this back to have_posts()/the_post()
- * against the main query on a page — that's what caused the original
- * "no posts show up" issue.
+ * WP_Query below to pull actual posts. Do not swap this back to
+ * have_posts()/the_post() against the main query on a page — that's
+ * what caused the original "no posts show up" issue.
  */
 
 get_header(); ?>
@@ -37,43 +36,18 @@ get_header(); ?>
 
 <?php
 /* -----------------------------------------------------------------
- * 1. Figure out which category (if any) is selected via ?blog_cat=slug
- * --------------------------------------------------------------- */
-$selected_cat_slug = isset( $_GET['blog_cat'] ) ? sanitize_title( wp_unslash( $_GET['blog_cat'] ) ) : '';
-
-/* -----------------------------------------------------------------
- * 2. Build the custom posts query (this is the key fix).
- *    Because this file is a PAGE template, we cannot rely on the
- *    global have_posts()/the_post() loop — it only contains the page.
+ * Build the custom posts query (this is the key fix).
+ * Because this file is a PAGE template, we cannot rely on the
+ * global have_posts()/the_post() loop — it only contains the page.
  * --------------------------------------------------------------- */
 $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 );
 
-$query_args = array(
+$blog_query = new WP_Query( array(
     'post_type'      => 'post',
     'post_status'    => 'publish',
     'posts_per_page' => 9,
     'paged'          => $paged,
-);
-
-if ( ! empty( $selected_cat_slug ) ) {
-    $query_args['category_name'] = $selected_cat_slug;
-}
-
-$blog_query = new WP_Query( $query_args );
-
-/* -----------------------------------------------------------------
- * 3. Pull real categories for the nav (replaces the hardcoded "#" links)
- *    Only categories that actually have published posts are shown.
- * --------------------------------------------------------------- */
-$nav_categories = get_categories( array(
-    'hide_empty' => true,
-    'orderby'    => 'count',
-    'order'      => 'DESC',
-    'number'     => 6,
 ) );
-
-// Base URL of this page (strips any existing query args so we can rebuild cleanly)
-$page_base_url = get_permalink();
 ?>
 
 <div class="blog-container min-h-screen">
@@ -104,23 +78,15 @@ $page_base_url = get_permalink();
         </div>
     </header>
 
-    <!-- Section: Sticky Category Navigation (now driven by real WP categories) -->
+    <!-- Section: Sticky Category Navigation (Organization) -->
     <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 py-4 px-6">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="filter-nav flex space-x-6 overflow-x-auto text-xs font-bold uppercase tracking-widest">
-                <a href="<?php echo esc_url( $page_base_url ); ?>"
-                   class="<?php echo empty( $selected_cat_slug ) ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-slate-400 hover:text-slate-900 transition'; ?>">
-                    All Resources
-                </a>
-                <?php foreach ( $nav_categories as $cat ) :
-                    $is_active = ( $selected_cat_slug === $cat->slug );
-                    $cat_url   = esc_url( add_query_arg( 'blog_cat', $cat->slug, $page_base_url ) );
-                ?>
-                    <a href="<?php echo $cat_url; ?>"
-                       class="<?php echo $is_active ? 'text-blue-600 border-b-2 border-blue-600 pb-1' : 'text-slate-400 hover:text-slate-900 transition'; ?>">
-                        <?php echo esc_html( $cat->name ); ?>
-                    </a>
-                <?php endforeach; ?>
+                <a href="#" class="text-blue-600 border-b-2 border-blue-600 pb-1">All Resources</a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition">Technical SEO</a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition">Content Strategy</a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition">Case Studies</a>
+                <a href="#" class="text-slate-400 hover:text-slate-900 transition">Local SEO</a>
             </div>
             <div class="hidden md:block">
                 <button class="text-xs font-bold bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
@@ -215,9 +181,7 @@ $page_base_url = get_permalink();
 
             <?php else : ?>
                 <div class="text-center py-20">
-                    <p class="text-slate-400">
-                        <?php echo ! empty( $selected_cat_slug ) ? 'No resources found in this category.' : 'No blog posts have been published yet.'; ?>
-                    </p>
+                    <p class="text-slate-400">No blog posts have been published yet.</p>
                 </div>
             <?php endif; ?>
 
