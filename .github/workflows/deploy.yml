@@ -20,3 +20,4 @@ jobs:
           script: |
             cd /home/csicser1/public_html/wp-content/themes/hello-elementor
             git pull origin main
+            wp litespeed-purge all --path=/home/csicser1/public_html || true
