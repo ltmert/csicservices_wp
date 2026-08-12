@@ -300,7 +300,7 @@
                     <li><a href="/impressum" class="hover:text-white transition text-decoration-none">Impressum (Legal Notice)</a></li>
                     <li><a href="/privacy" class="hover:text-white transition font-semibold text-decoration-none">Privacy Policy (Global)</a></li>
                     <li><a href="/terms" class="hover:text-white transition text-decoration-none">Terms of Service (AGB)</a></li>
-                    <li><a href="/cookie-policy" class="hover:text-white transition text-decoration-none">Cookie Policy</a></li>
+                    <li><a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition text-decoration-none">Cookie Policy</a></li>
                     <li><a href="/contact" class="hover:text-white transition text-decoration-none">Contact & Partnerships</a></li>
                 </ul>
             </div>
