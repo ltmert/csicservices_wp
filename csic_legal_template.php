@@ -85,7 +85,7 @@
                 <li><a href="/privacy" class="hover:text-white transition font-semibold">Privacy Policy (Global)</a></li>
                 <li><a href="/terms" class="hover:text-white transition">Terms of Service (AGB)</a></li>
                 <!-- US/Ad Platform Requirements -->
-                <li><a href="/cookie-policy" class="hover:text-white transition">Cookie Policy</a></li>
+                <li><a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition">Cookie Policy</a></li>
             </ul>
         </div>
 

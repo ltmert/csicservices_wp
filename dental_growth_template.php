@@ -293,7 +293,7 @@ Template Name: Dentist SEO Landing
             <div class="flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest justify-end mt-8 md:mt-0">
                 <a href="/impressum" class="hover:text-white transition">Impressum</a>
                 <a href="/terms" class="hover:text-white transition">Terms & Conditions</a>
-                <a href="/cookies" class="hover:text-white transition">Cookie Policy</a>
+                <a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition">Cookie Policy</a>
                 <a href="/privacy" class="hover:text-white transition">Privacy Policy</a>
             </div>
         </div>

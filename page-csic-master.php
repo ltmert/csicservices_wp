@@ -241,7 +241,7 @@ Template Name: CSIC Master Service Template
             <div class="flex flex-wrap gap-8 text-[10px] font-black uppercase tracking-widest justify-center md:justify-end text-slate-400">
                 <a href="/impressum" class="hover:text-blue-600 transition text-decoration-none">Impressum</a>
                 <a href="/terms" class="hover:text-blue-600 transition text-decoration-none">Terms & Conditions</a>
-                <a href="/cookies" class="hover:text-blue-600 transition text-decoration-none">Cookie Policy</a>
+                <a href="https://csicservices.com/elementor-5228/" class="hover:text-blue-600 transition text-decoration-none">Cookie Policy</a>
                 <a href="/privacy" class="hover:text-blue-600 transition text-decoration-none">Privacy Policy</a>
             </div>
         </div>

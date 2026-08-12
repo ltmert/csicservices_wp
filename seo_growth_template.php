@@ -237,7 +237,7 @@
                     <li><a href="/impressum" class="hover:text-white transition">Impressum (Legal Notice)</a></li>
                     <li><a href="/privacy" class="hover:text-white transition">Privacy Policy (Global)</a></li>
                     <li><a href="/terms" class="hover:text-white transition">Terms of Service (AGB)</a></li>
-                    <li><a href="/cookie-policy" class="hover:text-white transition">Cookie Policy</a></li>
+                    <li><a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition">Cookie Policy</a></li>
                     <li><a href="/contact" class="hover:text-white transition">Contact & Partnerships</a></li>
                 </ul>
             </div>
