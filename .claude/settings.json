@@ -5,6 +5,12 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "WebFetch(domain:csicservices.com)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ltmer\\Projects\\csic_crm\\routes",
+      "C:\\Users\\ltmer\\Projects\\csic_crm\\app\\Http\\Controllers",
+      "C:\\Users\\ltmer\\Projects\\csic_crm\\app\\Console\\Commands",
+      "C:\\Users\\ltmer\\Projects\\csic_crm\\resources\\views\\link"
     ]
   }
 }

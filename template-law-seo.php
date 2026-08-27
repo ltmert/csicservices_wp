@@ -227,18 +227,9 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 justify-between items-center">
-            <div>
-                <div class="text-white font-bold text-xl mb-2 uppercase">CSIC SERVICES</div>
-                <p class="text-xs">Engineering-led Growth for the Legal Sector. Kennesaw, GA.</p>
-            </div>
-            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest justify-end">
-                <a href="/impressum" class="hover:text-white transition">Impressum</a>
-                <a href="/privacy" class="hover:text-white transition">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+    <?php get_template_part( 'template-parts/csic-landing-footer', null, array(
+        'blurb' => 'Engineering-led Growth for the Legal Sector. Headquartered in Kennesaw, GA.',
+    ) ); ?>
 
 </div>
 

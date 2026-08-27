@@ -270,7 +270,7 @@ Template Name: Dentist SEO Landing
                 
                 <div class="flex flex-col gap-4">
                     <a href="#gap-analysis" class="block w-full bg-primary text-white py-4 rounded-xl font-bold btn-hover text-center uppercase tracking-widest text-sm">Apply for Practice Slot</a>
-                    <a href="#" class="block w-full border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary hover:text-white transition uppercase tracking-widest text-sm">Schedule a meeting for full details</a>
+                    <a href="https://calendar.app.google/nFmbH3um2WoHUGmU6" target="_blank" rel="noopener" class="block w-full border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary hover:text-white transition uppercase tracking-widest text-sm">Schedule a meeting for full details</a>
                 </div>
             </div>
         </div>
@@ -291,20 +291,9 @@ Template Name: Dentist SEO Landing
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 justify-between items-center">
-            <div>
-                <div class="text-white font-bold text-xl mb-2 uppercase tracking-tight">CSIC SERVICES</div>
-                <p class="text-xs">Engineering-led Growth for the Dental Sector. Kennesaw, GA.</p>
-            </div>
-            <div class="flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest justify-end mt-8 md:mt-0">
-                <a href="/impressum" class="hover:text-white transition">Impressum</a>
-                <a href="/terms" class="hover:text-white transition">Terms & Conditions</a>
-                <a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition">Cookie Policy</a>
-                <a href="/privacy" class="hover:text-white transition">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+    <?php get_template_part( 'template-parts/csic-landing-footer', null, array(
+        'blurb' => 'Engineering-led Growth for the Dental Sector. Headquartered in Kennesaw, GA.',
+    ) ); ?>
 </div>
 
 </body>

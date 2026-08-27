@@ -49,6 +49,14 @@ get_header(); ?>
                             <span class="text-xs font-bold text-slate-700"><i class="fas fa-video text-purple-600 mr-2"></i> Zoom AI Transcribing</span>
                             <span class="text-[9px] font-black text-purple-600 bg-purple-100 px-2 py-0.5 rounded">CONNECTED</span>
                         </li>
+                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-fax text-indigo-600 mr-2"></i> iFax Transmissions</span>
+                            <span class="text-[9px] font-black text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded">ENCRYPTED</span>
+                        </li>
+                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-envelope-open-text text-amber-600 mr-2"></i> USPS Mail &amp; Tracking</span>
+                            <span class="text-[9px] font-black text-amber-600 bg-amber-100 px-2 py-0.5 rounded">TRACKED</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -175,4 +183,12 @@ get_header(); ?>
     </section>
 </main>
 
-<?php get_footer(); ?>
+<?php
+get_template_part( 'template-parts/csic-landing-footer', null, array(
+	'blurb' => 'Engineering-led Salesforce architecture, admin, and integration. Headquartered in Kennesaw, GA.',
+) );
+?>
+
+<?php wp_footer(); ?>
+</body>
+</html>

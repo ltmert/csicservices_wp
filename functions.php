@@ -295,3 +295,145 @@ function csic_microsoft_clarity() {
 }
 add_action( 'wp_head', 'csic_microsoft_clarity' );
 add_action( 'init', 'register_csic_menus' );
+
+/**
+ * CSIC: send landing-page lead-form submissions to a vertical-specific
+ * thank-you page instead of the default inline WPForms confirmation
+ * (which just scrolls the visitor back to the top of the same page).
+ *
+ * The same WPForms form (id 5477) is embedded across several landing
+ * templates, so the destination is chosen from the *source page's* assigned
+ * template — falling back to a vertical keyword in the page slug — never from
+ * the form id. Pages with no mapping keep WPForms' default behaviour.
+ *
+ * Two submit paths are covered:
+ *   - AJAX submit (templates that load the WPForms script): a listener on the
+ *     `wpformsAjaxSubmitSuccess` event redirects the browser.
+ *   - Native POST submit (e.g. the Dentist SEO template, which never calls
+ *     wp_head()/wp_footer() so the WPForms script never loads): a server-side
+ *     redirect on `wpforms_process_complete`.
+ */
+function csic_landing_thank_you_map() {
+  return array(
+    'dental_growth_template.php' => '/dental-thank-you/',
+    'template-law-seo.php'       => '/law-thank-you/',
+    'seo_growth_template.php'    => '/seo-thank-you/',
+    'salesforce_template.php'    => '/salesforce-thank-you/',
+  );
+}
+
+function csic_landing_thank_you_url_for_post( $post_id ) {
+  $post_id = absint( $post_id );
+  if ( ! $post_id ) {
+    return '';
+  }
+
+  $map      = csic_landing_thank_you_map();
+  $template = get_page_template_slug( $post_id );
+  if ( $template && isset( $map[ $template ] ) ) {
+    return home_url( $map[ $template ] );
+  }
+
+  $slug = (string) get_post_field( 'post_name', $post_id );
+  foreach ( array( 'dental', 'salesforce', 'ppc', 'law', 'seo' ) as $vertical ) {
+    if ( '' !== $slug && false !== strpos( $slug, $vertical ) ) {
+      return home_url( "/{$vertical}-thank-you/" );
+    }
+  }
+
+  return '';
+}
+
+// Native (non-AJAX) submissions: redirect server-side once processing is done.
+function csic_landing_thank_you_process_complete( $fields, $entry, $form_data, $entry_id ) {
+  if ( wp_doing_ajax() ) {
+    return;
+  }
+  $post_id = ! empty( $_POST['wpforms']['post_id'] ) ? absint( wp_unslash( $_POST['wpforms']['post_id'] ) ) : 0;
+  $url     = csic_landing_thank_you_url_for_post( $post_id );
+  if ( $url ) {
+    wp_safe_redirect( $url );
+    exit;
+  }
+}
+add_action( 'wpforms_process_complete', 'csic_landing_thank_you_process_complete', 20, 4 );
+
+// AJAX submissions: redirect from the browser when WPForms reports success.
+function csic_landing_thank_you_ajax_script() {
+  if ( ! is_page() ) {
+    return;
+  }
+  $url = csic_landing_thank_you_url_for_post( get_queried_object_id() );
+  if ( ! $url ) {
+    return;
+  }
+  ?>
+  <script>
+  document.addEventListener( 'wpformsAjaxSubmitSuccess', function () {
+    window.location.assign( <?php echo wp_json_encode( esc_url_raw( $url ) ); ?> );
+  } );
+  </script>
+  <?php
+}
+add_action( 'wp_footer', 'csic_landing_thank_you_ajax_script' );
+
+/**
+ * CSIC: Rank Math is the source of truth for <head> SEO tags. On the vertical
+ * thank-you pages (template-thank-you.php) force noindex plus a per-vertical
+ * title/description, so the pages stay out of search without anyone touching
+ * the Rank Math meta box on each one. noindex also drops them from the sitemap.
+ */
+function csic_is_thank_you_page() {
+  return is_page() && is_page_template( 'template-thank-you.php' );
+}
+
+function csic_thank_you_seo_meta() {
+  $slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+  $map  = array(
+    'dental'     => 'Dental SEO Audit Request Received',
+    'law'        => 'Law Firm SEO Audit Request Received',
+    'seo'        => 'SEO Growth Audit Request Received',
+    'ppc'        => 'PPC Audit Request Received',
+    'salesforce' => 'Salesforce Consultation Request Received',
+  );
+
+  $phrase = 'Request Received';
+  foreach ( $map as $key => $text ) {
+    if ( '' !== $slug && false !== strpos( $slug, $key ) ) {
+      $phrase = $text;
+      break;
+    }
+  }
+
+  return array(
+    'title' => 'Thank You — ' . $phrase . ' | CSIC Services',
+    'desc'  => 'Your request has been received. A CSIC engineer will review your details and send your teardown within one business day.',
+  );
+}
+
+function csic_thank_you_rank_math_robots( $robots ) {
+  if ( csic_is_thank_you_page() ) {
+    $robots['index']  = 'noindex';
+    $robots['follow'] = 'follow';
+  }
+  return $robots;
+}
+add_filter( 'rank_math/frontend/robots', 'csic_thank_you_rank_math_robots' );
+
+function csic_thank_you_rank_math_title( $title ) {
+  if ( csic_is_thank_you_page() ) {
+    $meta = csic_thank_you_seo_meta();
+    return $meta['title'];
+  }
+  return $title;
+}
+add_filter( 'rank_math/frontend/title', 'csic_thank_you_rank_math_title' );
+
+function csic_thank_you_rank_math_description( $description ) {
+  if ( csic_is_thank_you_page() ) {
+    $meta = csic_thank_you_seo_meta();
+    return $meta['desc'];
+  }
+  return $description;
+}
+add_filter( 'rank_math/frontend/description', 'csic_thank_you_rank_math_description' );

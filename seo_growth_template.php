@@ -221,51 +221,9 @@
     </div>
 </section>
 
-<footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800 mt-20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 text-left">
-            <div class="col-span-2">
-                <div class="text-white font-bold text-xl mb-4 uppercase tracking-tighter">CSIC SERVICES</div>
-                <p class="text-sm leading-relaxed max-w-sm">
-                    Engineering-led growth infrastructure for global e-commerce and enterprise brands. 
-                    Headquartered in Kennesaw, GA. Serving high-growth markets worldwide.
-                </p>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-6 text-xs uppercase tracking-widest">Legal & Privacy</h4>
-                <ul class="text-xs space-y-3" style="list-style:none; padding:0; margin:0;">
-                    <li><a href="/impressum" class="hover:text-white transition">Impressum (Legal Notice)</a></li>
-                    <li><a href="/privacy" class="hover:text-white transition">Privacy Policy (Global)</a></li>
-                    <li><a href="/terms" class="hover:text-white transition">Terms of Service (AGB)</a></li>
-                    <li><a href="https://csicservices.com/elementor-5228/" class="hover:text-white transition">Cookie Policy</a></li>
-                    <li><a href="/contact" class="hover:text-white transition">Contact & Partnerships</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold mb-6 text-xs uppercase tracking-widest">Connect</h4>
-            <!--
-            <div class="flex space-x-4">
-                <a href="https://linkedin.com/company/csicservices" class="hover:text-white transition" target="_blank">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
-                <a href="https://twitter.com/csicservices" class="hover:text-white transition" target="_blank">
-                    <i class="fab fa-twitter fa-lg"></i>
-                </a>
-            </div>-->
-                <p class="text-[10px] uppercase tracking-widest opacity-40">Member of Global Growth Collective</p>
-            </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.2em]">
-            <span class="mb-4 md:mb-0">© <?php echo date('Y'); ?> CSIC Services. All Rights Reserved.</span>
-            <span class="opacity-40 flex items-center gap-4">
-                <span>Security: SSL Encrypted</span>
-                <span>GDPR Compliant</span>
-                <span>CCPA Ready</span>
-            </span>
-        </div>
-    </footer>
+<?php get_template_part( 'template-parts/csic-landing-footer', null, array(
+    'blurb' => 'Engineering-led growth infrastructure for global e-commerce and enterprise brands. Headquartered in Kennesaw, GA. Serving high-growth markets worldwide.',
+) ); ?>
 
 </div>
 
