@@ -37,25 +37,35 @@ get_header(); ?>
                         <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">CSIC INTEGRATION MAP</span>
                     </div>
                     <ul class="space-y-4">
-                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-file-invoice-dollar text-blue-600 mr-2"></i> Stripe Payments</span>
-                            <span class="text-[9px] font-black text-green-600 bg-green-100 px-2 py-0.5 rounded">AUTO-SYNCED</span>
+                        <li>
+                            <a href="/salesforce-stripe-payment-integration/" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-decoration-none">
+                                <span class="text-xs font-bold text-slate-700"><i class="fas fa-file-invoice-dollar text-blue-600 mr-2"></i> Stripe Payments</span>
+                                <span class="text-[9px] font-black text-green-600 bg-green-100 px-2 py-0.5 rounded">AUTO-SYNCED</span>
+                            </a>
                         </li>
-                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                            <span class="text-xs font-bold text-slate-700"><i class="fab fa-whatsapp text-green-500 mr-2"></i> WhatsApp / SMS Notifications</span>
-                            <span class="text-[9px] font-black text-blue-600 bg-blue-100 px-2 py-0.5 rounded">REALTIME</span>
+                        <li>
+                            <a href="/salesforce-whatsapp-sms-notifications/" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-decoration-none">
+                                <span class="text-xs font-bold text-slate-700"><i class="fab fa-whatsapp text-green-500 mr-2"></i> WhatsApp / SMS Notifications</span>
+                                <span class="text-[9px] font-black text-blue-600 bg-blue-100 px-2 py-0.5 rounded">REALTIME</span>
+                            </a>
                         </li>
-                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-video text-purple-600 mr-2"></i> Zoom AI Transcribing</span>
-                            <span class="text-[9px] font-black text-purple-600 bg-purple-100 px-2 py-0.5 rounded">CONNECTED</span>
+                        <li>
+                            <a href="/salesforce-zoom-ai-transcription/" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-decoration-none">
+                                <span class="text-xs font-bold text-slate-700"><i class="fas fa-video text-purple-600 mr-2"></i> Zoom AI Transcribing</span>
+                                <span class="text-[9px] font-black text-purple-600 bg-purple-100 px-2 py-0.5 rounded">CONNECTED</span>
+                            </a>
                         </li>
-                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-fax text-indigo-600 mr-2"></i> iFax Transmissions</span>
-                            <span class="text-[9px] font-black text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded">ENCRYPTED</span>
+                        <li>
+                            <a href="/salesforce-ifax-integration/" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-decoration-none">
+                                <span class="text-xs font-bold text-slate-700"><i class="fas fa-fax text-indigo-600 mr-2"></i> iFax Transmissions</span>
+                                <span class="text-[9px] font-black text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded">ENCRYPTED</span>
+                            </a>
                         </li>
-                        <li class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                            <span class="text-xs font-bold text-slate-700"><i class="fas fa-envelope-open-text text-amber-600 mr-2"></i> USPS Mail &amp; Tracking</span>
-                            <span class="text-[9px] font-black text-amber-600 bg-amber-100 px-2 py-0.5 rounded">TRACKED</span>
+                        <li>
+                            <a href="/salesforce-usps-mail-tracking/" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition text-decoration-none">
+                                <span class="text-xs font-bold text-slate-700"><i class="fas fa-envelope-open-text text-amber-600 mr-2"></i> USPS Mail &amp; Tracking</span>
+                                <span class="text-[9px] font-black text-amber-600 bg-amber-100 px-2 py-0.5 rounded">TRACKED</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +88,8 @@ get_header(); ?>
                         <i class="fas fa-fax text-xl"></i>
                     </div>
                     <h3 class="font-extrabold text-lg text-slate-950 uppercase tracking-tight mb-2">iFax Automation</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Secure, inbound and outbound medical or legal fax transmissions processed directly inside standard objects. No paper, 100% cloud compliance.</p>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Secure, inbound and outbound medical or legal fax transmissions processed directly inside standard objects. No paper, 100% cloud compliance.</p>
+                    <a href="/salesforce-ifax-integration/" class="text-xs font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition text-decoration-none">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
 
                 <!-- USPS Integration -->
@@ -87,7 +98,8 @@ get_header(); ?>
                         <i class="fas fa-envelope-open-text text-xl"></i>
                     </div>
                     <h3 class="font-extrabold text-lg text-slate-950 uppercase tracking-tight mb-2">USPS Logistics</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Real-time address validation, shipping tracking details, and automated physical post/direct mail dispatches directly linked to your customer data loops.</p>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Real-time address validation, shipping tracking details, and automated physical post/direct mail dispatches directly linked to your customer data loops.</p>
+                    <a href="/salesforce-usps-mail-tracking/" class="text-xs font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition text-decoration-none">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
 
                 <!-- WhatsApp & SMS Integration -->
@@ -96,7 +108,8 @@ get_header(); ?>
                         <i class="fab fa-whatsapp text-xl"></i>
                     </div>
                     <h3 class="font-extrabold text-lg text-slate-950 uppercase tracking-tight mb-2">WhatsApp & SMS</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Engage users with automated notification triggers, clinical reminders, transactional dispatches, and real-time live chats mapped inside standard flows.</p>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Engage users with automated notification triggers, clinical reminders, transactional dispatches, and real-time live chats mapped inside standard flows.</p>
+                    <a href="/salesforce-whatsapp-sms-notifications/" class="text-xs font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition text-decoration-none">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
 
                 <!-- Zoom & Transcribing -->
@@ -105,7 +118,8 @@ get_header(); ?>
                         <i class="fas fa-microphone-alt text-xl"></i>
                     </div>
                     <h3 class="font-extrabold text-lg text-slate-950 uppercase tracking-tight mb-2">Zoom Meeting Records</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Auto-sync recorded sales calls, meetings, or patient consulting video logs. Generate AI-driven textual transcriptions synced to contact profiles.</p>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Auto-sync recorded sales calls, meetings, or patient consulting video logs. Generate AI-driven textual transcriptions synced to contact profiles.</p>
+                    <a href="/salesforce-zoom-ai-transcription/" class="text-xs font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition text-decoration-none">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
 
                 <!-- Stripe Gateway -->
@@ -114,7 +128,8 @@ get_header(); ?>
                         <i class="fab fa-stripe-s text-xl"></i>
                     </div>
                     <h3 class="font-extrabold text-lg text-slate-950 uppercase tracking-tight mb-2">Stripe Invoicing</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">Generate instant payment and booking deposit links inside cases or opportunities. Real-time auto-reconciliation of ledger records upon transaction success.</p>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-4">Generate instant payment and booking deposit links inside cases or opportunities. Real-time auto-reconciliation of ledger records upon transaction success.</p>
+                    <a href="/salesforce-stripe-payment-integration/" class="text-xs font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition text-decoration-none">Learn More <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
 
                 <!-- Custom UI / UX -->
