@@ -31,7 +31,7 @@ get_header(); ?>
             <?php endif; ?>
 
             <!-- ARTICLE CONTENT -->
-            <div class="prose prose-slate max-w-3xl mx-auto leading-relaxed text-[#272727] text-base md:text-lg">
+            <div class="prose prose-slate max-w-3xl mx-auto leading-relaxed text-[#272727] text-lg md:text-xl">
                 <style>
                     /* Post template typography, modeled on Nolo's legal-encyclopedia article style (Nunito Sans, near-black body copy) */
                     .post-article, .post-article * {
