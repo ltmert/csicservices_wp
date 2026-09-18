@@ -6,7 +6,7 @@ get_header(); ?>
 
 <main class="bg-white pt-32 pb-24">
     <?php while ( have_posts() ) : the_post(); ?>
-        <article class="max-w-4xl mx-auto px-6">
+        <article class="post-article max-w-4xl mx-auto px-6">
             <!-- ARTICLE TITLE & METADATA -->
             <header class="text-center mb-12">
                 <div class="flex justify-center items-center gap-2 mb-4">
@@ -31,11 +31,14 @@ get_header(); ?>
             <?php endif; ?>
 
             <!-- ARTICLE CONTENT -->
-            <div class="prose prose-slate max-w-3xl mx-auto leading-relaxed text-slate-600 text-base md:text-lg">
+            <div class="prose prose-slate max-w-3xl mx-auto leading-relaxed text-[#272727] text-base md:text-lg">
                 <style>
-                    /* Custom inline styles to enforce Inter readability inside B2B editorial posts */
+                    /* Post template typography, modeled on Nolo's legal-encyclopedia article style (Nunito Sans, near-black body copy) */
+                    .post-article, .post-article * {
+                        font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+                    }
                     .prose p { margin-bottom: 1.75em !important; line-height: 1.8 !important; }
-                    .prose h2, .prose h3 { font-weight: 800 !important; color: #0f172a !important; margin-top: 1.75em !important; margin-bottom: 0.5em !important; text-transform: uppercase !important; letter-spacing: -0.01em !important; }
+                    .prose h2, .prose h3 { font-weight: 800 !important; color: #272727 !important; margin-top: 1.75em !important; margin-bottom: 0.5em !important; text-transform: uppercase !important; letter-spacing: -0.01em !important; }
                     .prose h2 { font-size: 1.5rem !important; }
                     .prose h3 { font-size: 1.25rem !important; }
                     .prose ul, .prose ol { margin-bottom: 1.5em !important; padding-left: 1.5em !important; }
