@@ -437,3 +437,59 @@ function csic_thank_you_rank_math_description( $description ) {
   return $description;
 }
 add_filter( 'rank_math/frontend/description', 'csic_thank_you_rank_math_description' );
+
+/**
+ * CSIC: Rank Math doesn't register its SEO meta keys for REST, so
+ * wp-json/wp/v2/{posts,pages}/{id}?context=edit never exposes
+ * rank_math_title / rank_math_description and any REST write to them is
+ * silently dropped by WordPress. Register them so external tools can read
+ * and write the same fields Rank Math's metabox uses.
+ */
+function csic_register_rank_math_rest_meta() {
+  foreach ( array( 'post', 'page' ) as $post_type ) {
+    register_post_meta(
+      $post_type,
+      'rank_math_title',
+      array(
+        'show_in_rest'  => true,
+        'single'        => true,
+        'type'          => 'string',
+        'auth_callback' => function () {
+          return current_user_can( 'edit_posts' );
+        },
+      )
+    );
+    register_post_meta(
+      $post_type,
+      'rank_math_description',
+      array(
+        'show_in_rest'  => true,
+        'single'        => true,
+        'type'          => 'string',
+        'auth_callback' => function () {
+          return current_user_can( 'edit_posts' );
+        },
+      )
+    );
+  }
+}
+add_action( 'init', 'csic_register_rank_math_rest_meta' );
+
+/**
+ * CSIC: Hello Elementor's stock `add_theme_support( 'title-tag' )` above
+ * makes WordPress core print its own <title> via _wp_render_title_tag() on
+ * wp_head. Rank Math prints a second, correct <title> further down via its
+ * own wp_head hook and normally disables the core one — when that doesn't
+ * happen the page renders two <title> tags and browsers/Google use the
+ * first (wrong, doubled site name) one. Force Rank Math to be the only
+ * source regardless of that internal Rank Math behavior.
+ */
+add_action(
+  'after_setup_theme',
+  function () {
+    if ( defined( 'RANK_MATH_VERSION' ) ) {
+      remove_theme_support( 'title-tag' );
+    }
+  },
+  20
+);
