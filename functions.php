@@ -474,22 +474,3 @@ function csic_register_rank_math_rest_meta() {
   }
 }
 add_action( 'init', 'csic_register_rank_math_rest_meta' );
-
-/**
- * CSIC: Hello Elementor's stock `add_theme_support( 'title-tag' )` above
- * makes WordPress core print its own <title> via _wp_render_title_tag() on
- * wp_head. Rank Math prints a second, correct <title> further down via its
- * own wp_head hook and normally disables the core one — when that doesn't
- * happen the page renders two <title> tags and browsers/Google use the
- * first (wrong, doubled site name) one. Force Rank Math to be the only
- * source regardless of that internal Rank Math behavior.
- */
-add_action(
-  'after_setup_theme',
-  function () {
-    if ( defined( 'RANK_MATH_VERSION' ) ) {
-      remove_theme_support( 'title-tag' );
-    }
-  },
-  20
-);
