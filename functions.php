@@ -474,3 +474,39 @@ function csic_register_rank_math_rest_meta() {
   }
 }
 add_action( 'init', 'csic_register_rank_math_rest_meta' );
+
+/**
+ * CSIC: Security hardening.
+ *
+ * Covers what can be done from theme code alone. Items that require
+ * server/vhost or wp-config.php access (readme.html deny, directory
+ * listing, wp-content/uploads PHP-execution block, wp-config.php
+ * readability) are outside this repo's scope — this repo only maps to
+ * wp-content/themes/hello-elementor, not the WordPress root — and are
+ * applied separately at the server level.
+ */
+
+// Stop advertising the WP version via the <meta name="generator"> tag and feed generator tags.
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+// Disable the in-dashboard plugin/theme file editor. Canonical place for this
+// is wp-config.php; defined here as a fallback since it works identically
+// (the constant just needs to exist before wp-admin checks it) and this repo
+// doesn't have wp-config.php in scope.
+if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+  define( 'DISALLOW_FILE_EDIT', true );
+}
+
+/**
+ * Baseline security response headers. CSP is intentionally left out here —
+ * the CSIC landing templates load Tailwind, Font Awesome, and Google Fonts
+ * from multiple CDN hosts, so a real CSP needs an explicit allowlist and
+ * should land as its own tested change rather than bundled in blind.
+ */
+function csic_security_headers() {
+  header( 'X-Content-Type-Options: nosniff' );
+  header( 'X-Frame-Options: SAMEORIGIN' );
+  header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+}
+add_action( 'send_headers', 'csic_security_headers' );
