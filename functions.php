@@ -328,8 +328,17 @@ function csic_landing_thank_you_url_for_post( $post_id ) {
     return '';
   }
 
-  $map      = csic_landing_thank_you_map();
   $template = get_page_template_slug( $post_id );
+
+  // The Shopify SEO Audit landing page keeps WPForms' own inline confirmation
+  // (see csic_shopify_audit_crm_webhook() below) so its Google Ads conversion
+  // event fires without a page navigation — never route it into the redirect
+  // map, including via the 'seo' slug-keyword fallback below.
+  if ( 'page-shopify-seo-audit.php' === $template ) {
+    return '';
+  }
+
+  $map = csic_landing_thank_you_map();
   if ( $template && isset( $map[ $template ] ) ) {
     return home_url( $map[ $template ] );
   }
@@ -510,3 +519,66 @@ function csic_security_headers() {
   header( 'Referrer-Policy: strict-origin-when-cross-origin' );
 }
 add_action( 'send_headers', 'csic_security_headers' );
+
+/**
+ * CSIC: Shopify SEO Audit landing page (page-shopify-seo-audit.php) — Google
+ * Ads lead form. Posts each WPForms submission from that page to the CRM
+ * webhook. Matched by the *source page's* assigned template rather than the
+ * WPForms form ID, same convention as csic_landing_thank_you_map() above, so
+ * this keeps working even if the form is ever rebuilt with a new form ID.
+ *
+ * CRM_WEBHOOK_URL should be set in wp-config.php:
+ *   define( 'CRM_WEBHOOK_URL', 'https://your-crm.example.com/webhook' );
+ * The blank fallback below means the hook silently no-ops until that's set,
+ * rather than erroring.
+ */
+if ( ! defined( 'CRM_WEBHOOK_URL' ) ) {
+  define( 'CRM_WEBHOOK_URL', '' );
+}
+
+function csic_shopify_audit_field_value( $fields, $label ) {
+  foreach ( (array) $fields as $field ) {
+    if ( isset( $field['name'] ) && 0 === strcasecmp( trim( $field['name'] ), $label ) ) {
+      return isset( $field['value'] ) ? $field['value'] : '';
+    }
+  }
+  return '';
+}
+
+function csic_shopify_audit_crm_webhook( $fields, $entry, $form_data, $entry_id ) {
+  if ( '' === CRM_WEBHOOK_URL ) {
+    return;
+  }
+
+  $post_id = ! empty( $_POST['wpforms']['post_id'] ) ? absint( wp_unslash( $_POST['wpforms']['post_id'] ) ) : 0;
+  if ( ! $post_id || 'page-shopify-seo-audit.php' !== get_page_template_slug( $post_id ) ) {
+    return;
+  }
+
+  $payload = array(
+    'form_id'      => isset( $form_data['id'] ) ? $form_data['id'] : 0,
+    'entry_id'     => $entry_id,
+    'store_url'    => csic_shopify_audit_field_value( $fields, 'Shopify Store URL' ),
+    'email'        => csic_shopify_audit_field_value( $fields, 'Email' ),
+    'first_name'   => csic_shopify_audit_field_value( $fields, 'First Name' ),
+    'phone'        => csic_shopify_audit_field_value( $fields, 'Phone' ),
+    'gclid'        => csic_shopify_audit_field_value( $fields, 'gclid' ),
+    'utm_source'   => csic_shopify_audit_field_value( $fields, 'utm_source' ),
+    'utm_medium'   => csic_shopify_audit_field_value( $fields, 'utm_medium' ),
+    'utm_campaign' => csic_shopify_audit_field_value( $fields, 'utm_campaign' ),
+    'utm_term'     => csic_shopify_audit_field_value( $fields, 'utm_term' ),
+    'landing_page' => csic_shopify_audit_field_value( $fields, 'Landing Page URL' ),
+    'submitted_at' => current_time( 'mysql' ),
+  );
+
+  wp_remote_post(
+    CRM_WEBHOOK_URL,
+    array(
+      'timeout'  => 8,
+      'blocking' => false,
+      'headers'  => array( 'Content-Type' => 'application/json' ),
+      'body'     => wp_json_encode( $payload ),
+    )
+  );
+}
+add_action( 'wpforms_process_complete', 'csic_shopify_audit_crm_webhook', 20, 4 );
