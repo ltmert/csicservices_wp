@@ -328,8 +328,17 @@ function csic_landing_thank_you_url_for_post( $post_id ) {
     return '';
   }
 
-  $map      = csic_landing_thank_you_map();
   $template = get_page_template_slug( $post_id );
+
+  // The Shopify SEO Audit landing page keeps WPForms' own inline confirmation
+  // (see csic_shopify_audit_crm_webhook() below) so its Google Ads conversion
+  // event fires without a page navigation — never route it into the redirect
+  // map, including via the 'seo' slug-keyword fallback below.
+  if ( 'page-shopify-seo-audit.php' === $template ) {
+    return '';
+  }
+
+  $map = csic_landing_thank_you_map();
   if ( $template && isset( $map[ $template ] ) ) {
     return home_url( $map[ $template ] );
   }
@@ -474,3 +483,102 @@ function csic_register_rank_math_rest_meta() {
   }
 }
 add_action( 'init', 'csic_register_rank_math_rest_meta' );
+
+/**
+ * CSIC: Security hardening.
+ *
+ * Covers what can be done from theme code alone. Items that require
+ * server/vhost or wp-config.php access (readme.html deny, directory
+ * listing, wp-content/uploads PHP-execution block, wp-config.php
+ * readability) are outside this repo's scope — this repo only maps to
+ * wp-content/themes/hello-elementor, not the WordPress root — and are
+ * applied separately at the server level.
+ */
+
+// Stop advertising the WP version via the <meta name="generator"> tag and feed generator tags.
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+// Disable the in-dashboard plugin/theme file editor. Canonical place for this
+// is wp-config.php; defined here as a fallback since it works identically
+// (the constant just needs to exist before wp-admin checks it) and this repo
+// doesn't have wp-config.php in scope.
+if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+  define( 'DISALLOW_FILE_EDIT', true );
+}
+
+/**
+ * Baseline security response headers. CSP is intentionally left out here —
+ * the CSIC landing templates load Tailwind, Font Awesome, and Google Fonts
+ * from multiple CDN hosts, so a real CSP needs an explicit allowlist and
+ * should land as its own tested change rather than bundled in blind.
+ */
+function csic_security_headers() {
+  header( 'X-Content-Type-Options: nosniff' );
+  header( 'X-Frame-Options: SAMEORIGIN' );
+  header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+}
+add_action( 'send_headers', 'csic_security_headers' );
+
+/**
+ * CSIC: Shopify SEO Audit landing page (page-shopify-seo-audit.php) — Google
+ * Ads lead form. Posts each WPForms submission from that page to the CRM
+ * webhook. Matched by the *source page's* assigned template rather than the
+ * WPForms form ID, same convention as csic_landing_thank_you_map() above, so
+ * this keeps working even if the form is ever rebuilt with a new form ID.
+ *
+ * CRM_WEBHOOK_URL should be set in wp-config.php:
+ *   define( 'CRM_WEBHOOK_URL', 'https://your-crm.example.com/webhook' );
+ * The blank fallback below means the hook silently no-ops until that's set,
+ * rather than erroring.
+ */
+if ( ! defined( 'CRM_WEBHOOK_URL' ) ) {
+  define( 'CRM_WEBHOOK_URL', '' );
+}
+
+function csic_shopify_audit_field_value( $fields, $label ) {
+  foreach ( (array) $fields as $field ) {
+    if ( isset( $field['name'] ) && 0 === strcasecmp( trim( $field['name'] ), $label ) ) {
+      return isset( $field['value'] ) ? $field['value'] : '';
+    }
+  }
+  return '';
+}
+
+function csic_shopify_audit_crm_webhook( $fields, $entry, $form_data, $entry_id ) {
+  if ( '' === CRM_WEBHOOK_URL ) {
+    return;
+  }
+
+  $post_id = ! empty( $_POST['wpforms']['post_id'] ) ? absint( wp_unslash( $_POST['wpforms']['post_id'] ) ) : 0;
+  if ( ! $post_id || 'page-shopify-seo-audit.php' !== get_page_template_slug( $post_id ) ) {
+    return;
+  }
+
+  $payload = array(
+    'form_id'      => isset( $form_data['id'] ) ? $form_data['id'] : 0,
+    'entry_id'     => $entry_id,
+    'store_url'    => csic_shopify_audit_field_value( $fields, 'Shopify Store URL' ),
+    'email'        => csic_shopify_audit_field_value( $fields, 'Email' ),
+    'first_name'   => csic_shopify_audit_field_value( $fields, 'First Name' ),
+    'phone'        => csic_shopify_audit_field_value( $fields, 'Phone' ),
+    'gclid'        => csic_shopify_audit_field_value( $fields, 'gclid' ),
+    'utm_source'   => csic_shopify_audit_field_value( $fields, 'utm_source' ),
+    'utm_medium'   => csic_shopify_audit_field_value( $fields, 'utm_medium' ),
+    'utm_campaign' => csic_shopify_audit_field_value( $fields, 'utm_campaign' ),
+    'utm_term'     => csic_shopify_audit_field_value( $fields, 'utm_term' ),
+    'landing_page' => csic_shopify_audit_field_value( $fields, 'Landing Page URL' ),
+    'submitted_at' => current_time( 'mysql' ),
+  );
+
+  wp_remote_post(
+    CRM_WEBHOOK_URL,
+    array(
+      'timeout'  => 8,
+      'blocking' => false,
+      'headers'  => array( 'Content-Type' => 'application/json' ),
+      'body'     => wp_json_encode( $payload ),
+    )
+  );
+}
+add_action( 'wpforms_process_complete', 'csic_shopify_audit_crm_webhook', 20, 4 );
