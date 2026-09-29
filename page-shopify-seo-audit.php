@@ -39,7 +39,7 @@
  */
 
 if ( ! defined( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID' ) ) {
-	define( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID', 0 ); // TODO: set after creating the WPForms form.
+	define( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID', 6094 );
 }
 ?>
 <!DOCTYPE html>
@@ -125,6 +125,29 @@ if ( ! defined( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID' ) ) {
 
         /* Hidden UTM/gclid fields never take visual space even before WPForms JS hides type=hidden inputs */
         .csic-f-gclid, .csic-f-utm_source, .csic-f-utm_medium, .csic-f-utm_campaign, .csic-f-utm_term, .csic-f-landing-page { display: none !important; }
+
+        /* #shopify-audit-shield h2 forces a dark heading color; this section's h2 sits on the blue bg-primary band and needs to stay white */
+        #shopify-audit-shield #audit-form h2 { color: #ffffff !important; }
+
+        /* Hero icon badge: Shopify green, layered gradient + shadows for a 3D pop instead of a flat brand-colored glyph */
+        .icon-3d-shopify {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            margin: 0 auto 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #a3d160, #5e8e3e);
+            box-shadow: 0 16px 30px -10px rgba(94, 142, 62, 0.55), inset 0 2px 3px rgba(255, 255, 255, 0.45), inset 0 -8px 12px rgba(0, 0, 0, 0.18);
+            transform: rotate(-4deg);
+        }
+        .icon-3d-shopify i {
+            font-size: 40px;
+            color: #ffffff;
+            transform: rotate(4deg);
+            filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.25));
+        }
     </style>
 
     <?php wp_head(); ?>
@@ -146,6 +169,7 @@ if ( ! defined( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID' ) ) {
     <!-- HERO -->
     <section class="pt-14 pb-16 md:pt-20 md:pb-20 bg-slate-50">
         <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="icon-3d-shopify"><i class="fab fa-shopify"></i></div>
             <span class="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">Free Shopify SEO Audit</span>
             <h1>Get Your Free Shopify SEO Audit — Find Out Why You're Not Ranking (Or Selling)</h1>
             <p class="text-lg text-gray-500 mt-6 mb-10 leading-relaxed">
@@ -165,7 +189,7 @@ if ( ! defined( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID' ) ) {
                 <p class="text-xs font-bold uppercase tracking-wide text-gray-600">No Long Contracts</p>
             </div>
             <div>
-                <i class="fas fa-shopify text-primary text-xl mb-2"></i>
+                <i class="fab fa-shopify text-primary text-xl mb-2"></i>
                 <p class="text-xs font-bold uppercase tracking-wide text-gray-600">Shopify + SEO Specialists</p>
             </div>
             <div>
