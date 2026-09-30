@@ -101,8 +101,8 @@ $footer_nav_menu = wp_nav_menu( [
         <div>
             <div class="csic-footer-heading">Connect</div>
             <div style="display: flex; gap: 20px; font-size: 20px;">
-                <a href="#" style="color: inherit;"><i class="fab fa-linkedin"></i></a>
-                <a href="#" style="color: inherit;"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/company/csicservices" target="_blank" rel="noopener" style="color: inherit;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/csicservices" target="_blank" rel="noopener" style="color: inherit;"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
