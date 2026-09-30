@@ -209,36 +209,36 @@ if ( ! defined( 'CSIC_SHOPIFY_AUDIT_WPFORMS_ID' ) ) {
             <h2 class="text-center mb-4">What Your Shopify SEO Audit Covers</h2>
             <p class="text-center text-gray-500 max-w-2xl mx-auto mb-14">A full technical and content teardown from a Shopify SEO agency that specializes in product pages that rank — not a generic SEO checklist.</p>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/technical-seo-health/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-magnifying-glass text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">Technical SEO Health</h3>
                     <p class="text-sm text-gray-500">Crawlability, indexing errors, site speed, and structured data issues holding your store back.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                </a>
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/product-page-optimization/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-box-open text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">Product Page Optimization</h3>
                     <p class="text-sm text-gray-500">Why your product pages aren't ranking, and what it takes to build product pages that rank and convert.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                </a>
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/content-gap-analysis/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-list-check text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">Content Gap Analysis</h3>
                     <p class="text-sm text-gray-500">The keywords and pages your competitors rank for that your store is missing entirely.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                </a>
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/ai-search-visibility/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-robot text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">AI Search Visibility</h3>
                     <p class="text-sm text-gray-500">How your store shows up in AI Overviews and answer engines — the new front door to search.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                </a>
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/competitor-gap-report/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-users text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">Competitor Gap Report</h3>
                     <p class="text-sm text-gray-500">Exactly where competing Shopify stores are beating you in Google, and what closes the gap.</p>
-                </div>
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100">
+                </a>
+                <a href="<?php echo esc_url( home_url( '/shopify-audit/shopify-specific-fixes/' ) ); ?>" target="_blank" rel="noopener" class="block p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary hover:shadow-lg transition">
                     <i class="fas fa-wrench text-primary text-2xl mb-4"></i>
                     <h3 class="mb-2">Shopify-Specific Fixes</h3>
                     <p class="text-sm text-gray-500">Theme bloat, app conflicts, and duplicate collection URLs that are unique headaches on Shopify.</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
