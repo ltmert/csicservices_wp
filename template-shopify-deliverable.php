@@ -10,7 +10,7 @@
 
 get_header();
 
-$csic_audit_page_url = home_url( '/shopify-seo-audit/' );
+$csic_audit_page_url = home_url( '/free-shopify-seo-audit-csic-services-shopify-seo-agency/' );
 ?>
 
 <style>
