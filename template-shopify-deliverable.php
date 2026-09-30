@@ -11,11 +11,29 @@
 get_header();
 
 $csic_audit_page_url = home_url( '/free-shopify-seo-audit-csic-services-shopify-seo-agency/' );
+
+$csic_hub_id = 0;
+if ( is_page() ) {
+	$csic_hub_id = wp_get_post_parent_id( get_the_ID() );
+}
+
+$csic_sibling_pages = array();
+if ( $csic_hub_id ) {
+	$csic_sibling_pages = get_pages(
+		array(
+			'child_of'    => $csic_hub_id,
+			'parent'      => $csic_hub_id,
+			'exclude'     => get_the_ID(),
+			'sort_column' => 'menu_order,post_title',
+		)
+	);
+}
 ?>
 
 <style>
     .deliverable-page { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e293b; line-height: 1.6; }
     .hero-title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; letter-spacing: -0.03em; color: var(--agency-dark); line-height: 1.1; }
+    .section-title { font-size: 1.75rem; font-weight: 800; color: var(--agency-dark); letter-spacing: -0.02em; }
     .content-body { font-size: 1.05rem; color: #475569; }
     .content-body h2 { font-size: 1.5rem; font-weight: 700; color: var(--agency-dark); margin-top: 2.5rem; margin-bottom: 1rem; }
     .content-body p { margin-bottom: 1.5rem; }
@@ -30,6 +48,12 @@ $csic_audit_page_url = home_url( '/free-shopify-seo-audit-csic-services-shopify-
         <!-- Hero -->
         <header class="pt-24 pb-16 px-6 bg-slate-50 border-b border-slate-100">
             <div class="max-w-4xl mx-auto text-center">
+                <?php if ( $csic_hub_id ) : ?>
+                <a href="<?php echo esc_url( get_permalink( $csic_hub_id ) ); ?>" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-blue-600 transition mb-6">
+                    <i class="fas fa-arrow-left text-[10px]"></i> All Audit Categories
+                </a>
+                <br>
+                <?php endif; ?>
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black bg-blue-100 text-blue-700 uppercase tracking-widest mb-6">
                     Shopify SEO Audit Deliverable
                 </span>
@@ -43,6 +67,23 @@ $csic_audit_page_url = home_url( '/free-shopify-seo-audit-csic-services-shopify-
                 <?php the_content(); ?>
             </div>
         </main>
+
+        <!-- The other audit categories, so visitors aren't stuck once they leave the hub -->
+        <?php if ( ! empty( $csic_sibling_pages ) ) : ?>
+        <section class="py-16 px-6 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="section-title text-center mb-10">The Rest of Your Shopify SEO Audit</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <?php foreach ( $csic_sibling_pages as $csic_sibling ) : ?>
+                    <a href="<?php echo esc_url( get_permalink( $csic_sibling ) ); ?>" class="block p-6 rounded-2xl bg-white border border-slate-100 hover:border-blue-600 hover:shadow-lg transition">
+                        <h3 class="font-bold mb-2"><?php echo esc_html( get_the_title( $csic_sibling ) ); ?></h3>
+                        <p class="text-sm text-slate-500">See what's included and how fast it's delivered <i class="fas fa-arrow-right text-[10px] ml-1"></i></p>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
 
         <!-- CTA back to the free audit form -->
         <section class="py-20 px-6 bg-white border-t border-slate-100">
