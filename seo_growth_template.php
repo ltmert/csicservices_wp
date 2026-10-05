@@ -296,8 +296,13 @@
                 <h2 class="text-gray-900">See What a Teardown Looks Like</h2>
             </div>
             <div class="gs-sample-box">
-                <!-- PLACEHOLDER: replace with an <img> (include width/height/alt and loading="lazy") or a link to a sample PDF. -->
-                <p class="text-sm">[SAMPLE_TEARDOWN: add a screenshot or a link to a sample teardown PDF here]</p>
+                <i class="fas fa-file-pdf text-primary text-3xl mb-4"></i>
+                <p class="text-sm mb-4">See exactly what you'll get &mdash; a real teardown, not a template.</p>
+                <a href="https://csicservices.com/wp-content/uploads/2026/10/Sample-Shopify-Store-Teardown.pdf"
+                   target="_blank" rel="noopener"
+                   class="inline-block bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm btn-animate">
+                   View Sample Teardown (PDF)
+                </a>
             </div>
         </div>
     </section>
