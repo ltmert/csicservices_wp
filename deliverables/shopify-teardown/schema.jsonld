@@ -1,0 +1,89 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "serviceType": "Shopify SEO, PPC, and Store Management",
+      "provider": {
+        "@type": "Organization",
+        "name": "CSIC Services",
+        "url": "https://csicservices.com"
+      },
+      "areaServed": "Online",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Owner-operated Shopify store owners doing $10K-$100K per month in revenue"
+      },
+      "description": "A hands-on teardown of a Shopify store's SEO, conversion, and paid ad efficiency, identifying 10 fixes ranked by revenue impact plus a 90-day growth plan, followed by an ongoing SEO, PPC, and store management retainer.",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free mini-teardown",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Top 3 fixes ranked by revenue impact, delivered by email, no obligation."
+        },
+        {
+          "@type": "Offer",
+          "name": "Full teardown",
+          "price": "500",
+          "priceCurrency": "USD",
+          "description": "All 10 fixes ranked by revenue impact, a 90-day growth plan, and a live walkthrough call. Credited in full toward the first month of a retainer if started within 30 days."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is this for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Owner-operated Shopify stores doing roughly $10K–$100K per month in revenue who want more qualified traffic and higher conversion, without hiring a full in-house team."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from me to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your store URL, a rough monthly revenue range, and read-only or collaborator access to Shopify, Google Analytics (GA4), and Google Ads if you're running paid traffic. We'll ask for exactly what we need after you submit the form."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does the teardown take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We review your store and send your teardown within 3 business days of receiving access."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after I get the teardown?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We walk through every finding on a call. If it's a fit, you can move into an ongoing retainer covering SEO, PPC, and store management — pricing is discussed on that call. There's no obligation to continue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there contracts or minimums?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No long-term contract is required to get the teardown itself. Retainer terms, if you choose to continue, are discussed and agreed on the call before anything starts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if my store is on Shopify Plus?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work with Shopify Plus stores too. The review covers the same areas — SEO, conversion, analytics, and paid efficiency — adapted to Plus-specific features like scripts and wholesale channels where relevant."
+          }
+        }
+      ]
+    }
+  ]
+}

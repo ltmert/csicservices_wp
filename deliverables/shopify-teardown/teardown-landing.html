@@ -1,0 +1,446 @@
+<!--
+  CSIC Services — Shopify Store Teardown landing page snippet
+  Paste into a WPCode HTML snippet (shortcode location) or a builder HTML widget.
+  Self-contained: no external fonts, no external libraries, no jQuery.
+  All classes are prefixed csic-td- and scoped under .csic-td-root to avoid leaking into theme CSS.
+-->
+<div class="csic-td-root">
+  <style>
+    .csic-td-root {
+      --csic-td-primary: #2563eb;
+      --csic-td-primary-dark: #1d4ed8;
+      --csic-td-secondary: #066aab;
+      --csic-td-text: #111827;
+      --csic-td-text-light: #4b5563;
+      --csic-td-bg: #ffffff;
+      --csic-td-bg-alt: #f8fafc;
+      --csic-td-border: #e2e8f0;
+      --csic-td-radius: 10px;
+      --csic-td-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      font-family: var(--csic-td-font);
+      color: var(--csic-td-text);
+      background: var(--csic-td-bg);
+      line-height: 1.55;
+      -webkit-text-size-adjust: 100%;
+      box-sizing: border-box;
+    }
+    .csic-td-root *, .csic-td-root *::before, .csic-td-root *::after { box-sizing: inherit; }
+    .csic-td-root img { max-width: 100%; display: block; }
+    .csic-td-root a { color: var(--csic-td-primary); text-decoration: underline; }
+    .csic-td-root a:hover { color: var(--csic-td-primary-dark); }
+    .csic-td-root a:focus-visible,
+    .csic-td-root button:focus-visible,
+    .csic-td-root summary:focus-visible {
+      outline: 3px solid var(--csic-td-secondary);
+      outline-offset: 2px;
+    }
+
+    .csic-td-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    .csic-td-section { padding: 3rem 0; }
+    .csic-td-section-alt { background: var(--csic-td-bg-alt); }
+
+    .csic-td-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--csic-td-secondary);
+      margin: 0 0 0.75rem;
+    }
+    .csic-td-h1 {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin: 0 0 1rem;
+      color: var(--csic-td-text);
+    }
+    .csic-td-h2 {
+      font-size: 1.5rem;
+      line-height: 1.25;
+      font-weight: 800;
+      margin: 0 0 1.5rem;
+    }
+    .csic-td-h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    .csic-td-sub {
+      font-size: 1.1rem;
+      color: var(--csic-td-text-light);
+      margin: 0 0 1.5rem;
+      max-width: 640px;
+    }
+    .csic-td-p { margin: 0 0 1rem; color: var(--csic-td-text-light); }
+    .csic-td-trust {
+      font-size: 0.875rem;
+      color: var(--csic-td-text-light);
+      margin-top: 1rem;
+    }
+
+    .csic-td-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .csic-td-btn {
+      display: inline-block;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: var(--csic-td-radius);
+      padding: 0.85rem 1.5rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .csic-td-btn-primary {
+      background: var(--csic-td-primary);
+      color: #ffffff;
+    }
+    .csic-td-btn-primary:hover { background: var(--csic-td-primary-dark); color: #ffffff; }
+    .csic-td-btn-secondary {
+      background: transparent;
+      border-color: var(--csic-td-border);
+      color: var(--csic-td-text);
+    }
+    .csic-td-btn-secondary:hover { border-color: var(--csic-td-primary); color: var(--csic-td-primary); }
+
+    .csic-td-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .csic-td-card {
+      background: var(--csic-td-bg);
+      border: 1px solid var(--csic-td-border);
+      border-radius: var(--csic-td-radius);
+      padding: 1.5rem;
+    }
+    .csic-td-section-alt .csic-td-card { background: #ffffff; }
+
+    .csic-td-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      counter-reset: csic-td-step;
+    }
+    .csic-td-step { position: relative; padding-left: 3rem; }
+    .csic-td-step::before {
+      counter-increment: csic-td-step;
+      content: counter(csic-td-step);
+      position: absolute;
+      left: 0; top: 0;
+      width: 2.25rem; height: 2.25rem;
+      border-radius: 50%;
+      background: var(--csic-td-primary);
+      color: #fff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .csic-td-sample-box {
+      border: 2px dashed var(--csic-td-border);
+      border-radius: var(--csic-td-radius);
+      padding: 2rem;
+      text-align: center;
+      color: var(--csic-td-text-light);
+    }
+
+    .csic-td-offer-card {
+      border: 2px solid var(--csic-td-border);
+      border-radius: var(--csic-td-radius);
+      padding: 1.75rem;
+    }
+    .csic-td-offer-card.csic-td-offer-featured {
+      border-color: var(--csic-td-primary);
+    }
+    .csic-td-offer-price {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0.25rem 0 1rem;
+    }
+    .csic-td-offer-list {
+      margin: 0 0 1rem;
+      padding-left: 1.25rem;
+      color: var(--csic-td-text-light);
+    }
+    .csic-td-offer-list li { margin-bottom: 0.5rem; }
+    .csic-td-offer-note {
+      font-size: 0.85rem;
+      color: var(--csic-td-text-light);
+    }
+
+    .csic-td-faq-item {
+      border-bottom: 1px solid var(--csic-td-border);
+      padding: 1rem 0;
+    }
+    .csic-td-faq-item summary {
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .csic-td-faq-item summary::-webkit-details-marker { display: none; }
+    .csic-td-faq-item summary::after {
+      content: "+";
+      font-size: 1.25rem;
+      color: var(--csic-td-primary);
+      flex-shrink: 0;
+    }
+    .csic-td-faq-item[open] summary::after { content: "\2212"; }
+    .csic-td-faq-item p { margin: 0.75rem 0 0; color: var(--csic-td-text-light); }
+
+    .csic-td-form-wrap {
+      background: var(--csic-td-bg);
+      border: 1px solid var(--csic-td-border);
+      border-radius: var(--csic-td-radius);
+      padding: 1.75rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 700px) {
+      .csic-td-h1 { font-size: 2.5rem; }
+      .csic-td-h2 { font-size: 1.9rem; }
+      .csic-td-grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .csic-td-grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .csic-td-steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1100px) {
+      .csic-td-h1 { font-size: 2.9rem; }
+    }
+  </style>
+
+  <!-- 1. HERO -->
+  <section class="csic-td-section" id="csic-td-hero">
+    <div class="csic-td-container">
+      <p class="csic-td-eyebrow">For Shopify store owners doing $10K&ndash;$100K/mo</p>
+      <h1 class="csic-td-h1">Find the 10 fixes that are costing your Shopify store the most revenue &mdash; free</h1>
+      <p class="csic-td-sub">A hands-on teardown of your SEO, conversion, and ad spend, plus a 90-day growth plan you can act on. No agency jargon, no generic audit template.</p>
+      <div class="csic-td-cta-row">
+        <a href="#csic-td-form" class="csic-td-btn csic-td-btn-primary csic-td-scroll-link">Get My Free Teardown</a>
+        <a href="https://calendar.app.google/nFmbH3um2WoHUGmU6" class="csic-td-btn csic-td-btn-secondary" target="_blank" rel="noopener">Or book a call instead</a>
+      </div>
+      <p class="csic-td-trust">Every teardown is done by hand by someone who's actually looked at hundreds of Shopify stores &mdash; not a generated report.</p>
+    </div>
+  </section>
+
+  <!-- 2. THE PROBLEM -->
+  <section class="csic-td-section csic-td-section-alt" id="csic-td-problem">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">You're not imagining it</h2>
+      <div class="csic-td-grid csic-td-grid-3">
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">"Traffic's flat no matter what I try."</h3>
+          <p class="csic-td-p">You've tried an app or two, maybe an agency for a few months, and the numbers barely move. It's not obvious whether the problem is traffic, the site, or both.</p>
+        </div>
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">"People show up, but they don't buy."</h3>
+          <p class="csic-td-p">You can see visitors in analytics. You can't see why they're leaving on the product page or bailing at checkout.</p>
+        </div>
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">"I don't have time to fix any of this myself."</h3>
+          <p class="csic-td-p">You're running the business &mdash; ordering, fulfillment, support, marketing. Auditing your own SEO and checkout flow isn't on the list, and it probably shouldn't be.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. WHAT'S IN THE TEARDOWN -->
+  <section class="csic-td-section" id="csic-td-whats-included">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">What's actually in the teardown</h2>
+      <p class="csic-td-p" style="max-width:720px;">This isn't a generic audit template. We go through your store the way a buyer &mdash; and Google &mdash; actually experiences it, and flag the specific things costing you traffic, conversions, or margin.</p>
+      <div class="csic-td-grid csic-td-grid-2">
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">Search &amp; technical SEO</h3>
+          <p class="csic-td-p">Duplicate content between your <code>/collections/.../products/</code> URLs and their canonical versions, thin or templated collection page content, missing or broken product schema, and page-speed drag from app or theme script bloat.</p>
+        </div>
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">Conversion &amp; product pages</h3>
+          <p class="csic-td-p">Mobile product page friction, checkout steps that lose people, and product descriptions that describe the product but don't answer the buyer's actual question.</p>
+        </div>
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">Analytics &amp; product mix</h3>
+          <p class="csic-td-p">Whether your GA4 setup can actually tell you which products are profitable at the margin level &mdash; not just which ones sell the most units.</p>
+        </div>
+        <div class="csic-td-card">
+          <h3 class="csic-td-h3">Paid ad efficiency</h3>
+          <p class="csic-td-p">Where ad spend is going toward traffic that was never going to convert, and where it's being pulled away from the products and audiences that actually work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HOW IT WORKS -->
+  <section class="csic-td-section csic-td-section-alt" id="csic-td-how-it-works">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">How it works</h2>
+      <div class="csic-td-steps">
+        <div class="csic-td-step">
+          <h3 class="csic-td-h3">Request your teardown</h3>
+          <p class="csic-td-p">Fill out the form below with your store URL, revenue range, and biggest problem.</p>
+        </div>
+        <div class="csic-td-step">
+          <h3 class="csic-td-h3">We review your store<br>(3 business days)</h3>
+          <p class="csic-td-p">We go through your site, your analytics, and your ad accounts (if applicable) by hand.</p>
+        </div>
+        <div class="csic-td-step">
+          <h3 class="csic-td-h3">Walkthrough call</h3>
+          <p class="csic-td-p">We walk through every finding together and answer questions &mdash; no slide deck, no sales script.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SAMPLE TEARDOWN -->
+  <section class="csic-td-section" id="csic-td-sample">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">See what a teardown looks like</h2>
+      <div class="csic-td-sample-box">
+        <!-- PLACEHOLDER: replace this box with an <img> (include width/height and loading="lazy") or a link to a sample PDF. -->
+        <p class="csic-td-p" style="margin-bottom:0;">[SAMPLE_TEARDOWN: add a screenshot or a link to a sample teardown PDF here]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PROOF (hidden until real results/testimonial are added) -->
+  <section class="csic-td-section csic-td-section-alt" id="csic-td-proof" style="display:none;">
+    <!--
+      PLACEHOLDER SECTION — hidden via display:none above because no real proof has been provided yet.
+      Fill in [PROOF_1], [PROOF_2], and [TESTIMONIAL_1] below with real numbers/quotes, then delete
+      the inline style="display:none" on this <section> to make it visible. Do not unhide with placeholder
+      text still in place.
+    -->
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">Results</h2>
+      <div class="csic-td-grid csic-td-grid-3">
+        <div class="csic-td-card">
+          <p class="csic-td-p" style="margin-bottom:0;">[PROOF_1: e.g. "Organic traffic up 42% in 4 months for a $30K/mo apparel store"]</p>
+        </div>
+        <div class="csic-td-card">
+          <p class="csic-td-p" style="margin-bottom:0;">[PROOF_2: e.g. "Checkout conversion rate up 1.1 points after fixing mobile PDP friction"]</p>
+        </div>
+        <div class="csic-td-card">
+          <p class="csic-td-p" style="margin-bottom:0;">[TESTIMONIAL_1: real client quote, name, and store name]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. AFTER THE TEARDOWN -->
+  <section class="csic-td-section" id="csic-td-after">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">What happens after the teardown</h2>
+      <p class="csic-td-p" style="max-width:720px;">Most stores we work with move into an ongoing retainer covering SEO, PPC, and store management &mdash; we keep fixing and building on what the teardown found instead of handing you a report and disappearing. If you're running paid ads, that can be managed as part of the retainer or as a separate add-on, depending on how involved you want us to be. Pricing for ongoing work is discussed on the walkthrough call, based on what your store actually needs &mdash; there's no fixed package to upsell you into.</p>
+    </div>
+  </section>
+
+  <!-- 8. OFFER BOX -->
+  <section class="csic-td-section csic-td-section-alt" id="csic-td-offer">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">What you get</h2>
+      <div class="csic-td-grid csic-td-grid-2">
+        <div class="csic-td-offer-card">
+          <h3 class="csic-td-h3">Free mini-teardown</h3>
+          <p class="csic-td-offer-price">$0</p>
+          <ul class="csic-td-offer-list">
+            <li>Your top 3 fixes, ranked by revenue impact</li>
+            <li>Delivered by email, no call required</li>
+            <li>No obligation to continue</li>
+          </ul>
+        </div>
+        <div class="csic-td-offer-card csic-td-offer-featured">
+          <h3 class="csic-td-h3">Full teardown</h3>
+          <p class="csic-td-offer-price">$500</p>
+          <ul class="csic-td-offer-list">
+            <li>All 10 fixes, ranked by revenue impact</li>
+            <li>A 90-day growth plan you can act on</li>
+            <li>A live walkthrough call</li>
+            <li>Credited in full toward your first month if you start a retainer within 30 days</li>
+          </ul>
+          <p class="csic-td-offer-note">[CONFIRM: 30-day credit window &mdash; edit if you want a different term.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="csic-td-section" id="csic-td-faq">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2">Questions</h2>
+      <div>
+        <details class="csic-td-faq-item">
+          <summary>Who is this for?</summary>
+          <p>Owner-operated Shopify stores doing roughly $10K&ndash;$100K per month in revenue who want more qualified traffic and higher conversion, without hiring a full in-house team.</p>
+        </details>
+        <details class="csic-td-faq-item">
+          <summary>What do you need from me to start?</summary>
+          <p>Your store URL, a rough monthly revenue range, and read-only or collaborator access to Shopify, Google Analytics (GA4), and Google Ads if you're running paid traffic. We'll ask for exactly what we need after you submit the form.</p>
+        </details>
+        <details class="csic-td-faq-item">
+          <summary>How long does the teardown take?</summary>
+          <p>We review your store and send your teardown within 3 business days of receiving access.</p>
+        </details>
+        <details class="csic-td-faq-item">
+          <summary>What happens after I get the teardown?</summary>
+          <p>We walk through every finding on a call. If it's a fit, you can move into an ongoing retainer covering SEO, PPC, and store management &mdash; pricing is discussed on that call. There's no obligation to continue.</p>
+        </details>
+        <details class="csic-td-faq-item">
+          <summary>Are there contracts or minimums?</summary>
+          <p>No long-term contract is required to get the teardown itself. Retainer terms, if you choose to continue, are discussed and agreed on the call before anything starts.</p>
+        </details>
+        <details class="csic-td-faq-item">
+          <summary>What if my store is on Shopify Plus?</summary>
+          <p>We work with Shopify Plus stores too. The review covers the same areas &mdash; SEO, conversion, analytics, and paid efficiency &mdash; adapted to Plus-specific features like scripts and wholesale channels where relevant.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FINAL CTA + FORM -->
+  <section class="csic-td-section csic-td-section-alt" id="csic-td-form">
+    <div class="csic-td-container">
+      <h2 class="csic-td-h2" style="text-align:center;">Ready to see what's costing you revenue?</h2>
+      <p class="csic-td-p" style="text-align:center; max-width:640px; margin:0 auto 1.5rem;">Tell us about your store and we'll send your free mini-teardown. Want to skip straight to a conversation?</p>
+      <p style="text-align:center; margin-bottom:1.5rem;">
+        <a href="https://calendar.app.google/nFmbH3um2WoHUGmU6" target="_blank" rel="noopener">Book a call instead &rarr;</a>
+      </p>
+      <div class="csic-td-form-wrap">
+        <!-- WPForms shortcode: fields configured in WPForms are name, email, store URL, monthly revenue range, biggest problem -->
+        [wpforms id="6094"]
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var links = document.querySelectorAll('.csic-td-scroll-link');
+      for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId && targetId.charAt(0) === '#') {
+            var target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      }
+    })();
+  </script>
+</div>
