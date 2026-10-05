@@ -17,9 +17,10 @@ Template Name: CSIC Master Service Template
     <style id="csic-master-core-css">
         /* OVERRIDING ELEMENTOR GLOBAL KIT SPECIFICITY */
         :root {
-            --agency-primary: #2563eb !important; 
-            --agency-dark: #111827 !important;    
+            --agency-primary: #2563eb !important;
+            --agency-dark: #111827 !important;
             --csic-accent: #afaaf9 !important;
+            --csic-orange: #ff4400 !important;
         }
         
         /* Force Inter on everything to kill "Darker Grotesque" override from elementor-kit-8 */
@@ -100,8 +101,16 @@ Template Name: CSIC Master Service Template
             letter-spacing: 0.15em !important; 
         }
         .csic-nav ul li { position: relative !important; }
-        .csic-nav ul li a { transition: color 0.3s !important; display: block !important; padding: 10px 0 !important; color: #64748b !important; text-decoration: none !important; }
-        .csic-nav ul li a:hover { color: var(--agency-primary) !important; }
+
+        /* Departure-board hover: top label slides up and out, orange bottom
+           copy slides up into view, like an airport flight board flap. */
+        .csic-nav ul li a.csic-nav-link { display: block !important; padding: 10px 0 !important; text-decoration: none !important; }
+        .csic-nav ul li a.csic-nav-link .csic-flip-mask { display: block !important; overflow: hidden !important; height: 1.4em !important; }
+        .csic-nav ul li a.csic-nav-link .csic-flip { display: block !important; transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1) !important; }
+        .csic-nav ul li a.csic-nav-link:hover .csic-flip { transform: translateY(-50%) !important; }
+        .csic-nav ul li a.csic-nav-link .csic-flip-top,
+        .csic-nav ul li a.csic-nav-link .csic-flip-bottom { display: block !important; line-height: 1.4 !important; color: #64748b !important; }
+        .csic-nav ul li a.csic-nav-link .csic-flip-bottom { color: var(--csic-orange) !important; }
 
         /* WPForms Styling Fix */
         .audit-form-container input { 

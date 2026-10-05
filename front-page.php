@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style id="csic-home-core-css">
-        :root { 
-            --primary: #2563eb; 
-            --dark: #111827; 
+        :root {
+            --primary: #2563eb;
+            --dark: #111827;
+            --csic-orange: #ff4400;
         }
         body {
             font-family: 'Inter', sans-serif !important;
@@ -89,13 +90,33 @@
         .csic-nav ul li {
             position: relative !important;
         }
-        .csic-nav ul li a {
-            transition: color 0.2s !important;
-            color: #64748b !important;
+
+        /* Departure-board hover: top label slides up and out, orange bottom
+           copy slides up into view, like an airport flight board flap. */
+        .csic-nav ul li a.csic-nav-link {
+            display: block !important;
             text-decoration: none !important;
         }
-        .csic-nav ul li a:hover {
-            color: var(--primary) !important;
+        .csic-nav ul li a.csic-nav-link .csic-flip-mask {
+            display: block !important;
+            overflow: hidden !important;
+            height: 1.4em !important;
+        }
+        .csic-nav ul li a.csic-nav-link .csic-flip {
+            display: block !important;
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1) !important;
+        }
+        .csic-nav ul li a.csic-nav-link:hover .csic-flip {
+            transform: translateY(-50%) !important;
+        }
+        .csic-nav ul li a.csic-nav-link .csic-flip-top,
+        .csic-nav ul li a.csic-nav-link .csic-flip-bottom {
+            display: block !important;
+            line-height: 1.4 !important;
+            color: #64748b !important;
+        }
+        .csic-nav ul li a.csic-nav-link .csic-flip-bottom {
+            color: var(--csic-orange) !important;
         }
     </style>
     <?php wp_head(); ?>
