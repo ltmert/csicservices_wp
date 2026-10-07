@@ -12,5 +12,13 @@
       "C:\\Users\\ltmer\\Projects\\csic_crm\\app\\Console\\Commands",
       "C:\\Users\\ltmer\\Projects\\csic_crm\\resources\\views\\link"
     ]
+  },
+    "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(git push origin main)",
+      "Bash(ssh csic-a2 *wp post create*)",
+      "Bash(ssh csic-a2 *wp post meta*)"
+    ]
   }
 }
