@@ -223,11 +223,14 @@
                         <i class="fas fa-shopping-cart text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Shopify & E-commerce</h3>
-                    <ul class="text-gray-600 space-y-2 text-sm">
+                    <ul class="text-gray-600 space-y-2 text-sm mb-4">
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Custom Liquid Templates</li>
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Email Flow Automation (Klaviyo)</li>
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Inventory/Product Mix Advice</li>
                     </ul>
+                    <a href="<?php echo esc_url( home_url( '/shopify-seo-ads/' ) ); ?>" class="text-xs font-black text-primary uppercase tracking-widest hover:opacity-75 transition text-decoration-none">
+                        See the Shopify SEO & Ads Package <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
                 </div>
                 <!-- Service 2 -->
                 <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-xl transition group bg-gray-50">
