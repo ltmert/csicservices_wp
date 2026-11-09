@@ -319,6 +319,7 @@ function csic_landing_thank_you_map() {
     'template-law-seo.php'       => '/law-thank-you/',
     'seo_growth_template.php'    => '/seo-thank-you/',
     'salesforce_template.php'    => '/salesforce-thank-you/',
+    'template-shopify-seo-ads.php' => '/shopify-growth-thank-you/',
   );
 }
 
@@ -521,11 +522,13 @@ function csic_security_headers() {
 add_action( 'send_headers', 'csic_security_headers' );
 
 /**
- * CSIC: Shopify SEO Audit landing page (page-shopify-seo-audit.php) — Google
- * Ads lead form. Posts each WPForms submission from that page to the CRM
- * webhook. Matched by the *source page's* assigned template rather than the
- * WPForms form ID, same convention as csic_landing_thank_you_map() above, so
- * this keeps working even if the form is ever rebuilt with a new form ID.
+ * CSIC: Shopify lead-gen pages sharing WPForms form 6094 (Shopify Store URL
+ * + Email/Name/Phone + hidden UTM/gclid) — page-shopify-seo-audit.php's
+ * Google Ads audit page and template-shopify-seo-ads.php's SEO+Ads package
+ * page. Posts each submission from either page to the CRM webhook. Matched
+ * by the *source page's* assigned template rather than the WPForms form ID,
+ * same convention as csic_landing_thank_you_map() above, so this keeps
+ * working even if the form is ever rebuilt with a new form ID.
  *
  * CRM_WEBHOOK_URL should be set in wp-config.php:
  *   define( 'CRM_WEBHOOK_URL', 'https://your-crm.example.com/webhook' );
@@ -551,7 +554,8 @@ function csic_shopify_audit_crm_webhook( $fields, $entry, $form_data, $entry_id 
   }
 
   $post_id = ! empty( $_POST['wpforms']['post_id'] ) ? absint( wp_unslash( $_POST['wpforms']['post_id'] ) ) : 0;
-  if ( ! $post_id || 'page-shopify-seo-audit.php' !== get_page_template_slug( $post_id ) ) {
+  $shopify_lead_templates = array( 'page-shopify-seo-audit.php', 'template-shopify-seo-ads.php' );
+  if ( ! $post_id || ! in_array( get_page_template_slug( $post_id ), $shopify_lead_templates, true ) ) {
     return;
   }
 
