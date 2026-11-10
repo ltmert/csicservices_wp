@@ -44,6 +44,13 @@
 
 <div id="legal-shield">
 
+    <nav class="bg-white border-b sticky top-0 z-50 py-3">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="text-xl font-black text-primary tracking-tighter uppercase" style="text-decoration:none;">CSIC<span class="text-gray-700">SERVICES</span></a>
+            <a href="#gap-analysis" class="bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg btn-hover" style="text-decoration:none;">Get Free Gap Analysis</a>
+        </div>
+    </nav>
+
     <header class="relative py-24 bg-slate-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
             <div class="relative z-10">
@@ -94,7 +101,7 @@
             <div>
                 <span class="text-blue-400 font-bold uppercase tracking-widest text-[10px]">Case Study: Sirins Legal</span>
                 <h2 class="text-white mt-4 mb-6">300% Organic Growth in <span class="text-blue-400">90 Days</span>.</h2>
-                <p class="text-gray-400 text-lg mb-8 leading-relaxed">By stripping out their legacy technical debt and deploying our <b>"Authority Engine</b>,"we took Sirins from 2,000 to 8,000 monthly visitors.</p>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">By stripping out their legacy technical debt and deploying our <b>"Authority Engine"</b>, we took Sirins from 2,000 to 8,000 monthly visitors.</p>
                 <div class="grid grid-cols-2 gap-8">
                     <div class="border-l-2 border-blue-500 pl-4">
                         <div class="text-3xl font-black text-white">4.0X</div>
@@ -209,8 +216,8 @@
                     <p class="text-sm text-gray-600">SEO is a compounding asset. You will see technical improvements in 30 days, but consistent lead volume usually matures between months 4 and 6.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl border border-gray-200">
-                    <h4 class="font-bold mb-3 text-primary uppercase text-xs tracking-widest">Do you handle my specific CMS?</h4>
-                    <p class="text-sm text-gray-600">Yes. We are platform-agnostic engineers. Whether your firm is on WordPress, Shopify, or a custom PHP framework, we handle the dev work internally.</p>
+                    <h4 class="font-bold mb-3 text-primary uppercase text-xs tracking-widest">Do you handle state bar advertising compliance?</h4>
+                    <p class="text-sm text-gray-600">Yes. Every page, case result, and testimonial we publish is reviewed against your state bar's attorney advertising rules — required disclaimers, no guarantee-of-outcome language — without diluting the SEO value.</p>
                 </div>
             </div>
         </div>
